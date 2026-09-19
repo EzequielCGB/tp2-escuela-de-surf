@@ -9,7 +9,7 @@ public class Turno {
     private String horario;
     private Instructor instructor;
     private Inscripcion[] incripciones;
-    private String catidadInscriptos;
+    private int catidadInscriptos;
 
     //Constructor
     public Turno(String fecha, String horario, Instructor instructor){
@@ -18,5 +18,36 @@ public class Turno {
         this.instructor = instructor;
         this.inscripciones = new Incripcion[CUPO_MAXIMO];
         this.cantidadInscriptos = 0;
+    }
+
+    //Verific si hay cupo disponible para inscribirse
+    public boolean hayCupo(){
+        return this.cantidadInscriptos < CUPO_MAXIMO;
+    }
+
+    //Para agregar una inscripcion respetando el cupo
+    public boolean agregarInscripto(Inscripcion inscripcion){
+        if (!hayCupo()){
+            System.out.println("Error: El turno de la fecha " + this.fecha + " a las " + this.horario + "llego a su cupo maximo (" + CUPO_MAXIMO + ")");
+            return false;
+        }
+        this.inscripciones[this.cantidadInscriptos] = inscripcion;
+        this.cantidadInscriptos++;
+        return true;
+    }
+
+    //Calcula el porcentaje de asistencia de este turno
+    public double calcularPorcentajeAsistencia(){
+        if (this.catidadInscriptos == 0) {
+            return 0;
+        }
+        int presentes = 0;
+        for (int i = 0; i < this.catidadInscriptos; i++){
+            if(this.incripciones[i].getAsistencia()){
+                presentes++;
+            }
+        }
+        return ((double) presentes / this.catidadInscriptos) * 100;
+        
     }
 }
