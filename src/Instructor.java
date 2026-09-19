@@ -12,7 +12,7 @@ public class Instructor {
         this.apellido = apellido;
         this.matricula = matricula;  
     }
-    
+
     //Getters y Setters
     public String getNombre(){
         return this.nombre;
@@ -36,5 +36,10 @@ public class Instructor {
 
     public void setMatricula(String matricula){
         this.matricula = matricula;
+    }
+    
+    //Metodo de descripcion
+    public String descripcion(){
+        return "Instructor: " + this.apellido + ", " + this.nombre + "(Matricula: " + this.matricula + ")";
     }
 }
