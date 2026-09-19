@@ -47,7 +47,47 @@ public class Turno {
                 presentes++;
             }
         }
-        return ((double) presentes / this.catidadInscriptos) * 100;
-        
+        return ((double) presentes / this.catidadInscriptos) * 100;  
+    }
+
+    //Getters y Setters
+    public String getFecha(){
+        return this.fecha;
+    }
+
+    public void setFecha(String fecha){
+        this.fecha = fecha;
+    }
+
+    public String getHorario(){
+        return this.horario;
+    }
+    
+    public void setHorario(String horario){
+        this.horario = horario;
+    }
+
+    public Instructor getInstructor(){
+        return this.Instructor;
+    }
+    
+    public void setInstructor(Instructor intructor){
+        this.instructor = instructor;
+    }
+
+    public int getCantidadInscriptos(){
+        return this.catidadInscriptos;
+    }
+    public Inscripcion[] getInscripciones(){
+        return this.inscripciones;
+    }
+    public String descripcion(){
+        String nombreInstructor;
+        if (this.instructor != null){
+            nombreInstructor = this.instructor.getApellido() + ", " + this.instructor.getNombre();
+        } else {
+            nombreInstructor = "No hay Instructor";
+        }
+        return "Turno - Fecha: " + this.fecha + " - Horario: " + this.horario + "- Instructor: " + nombreInstructor + "- Inscriptos: " + this.getCantidadInscriptos() + " sobre el total: " + CUPO_MAXIMO;
     }
 }
