@@ -41,18 +41,36 @@ public class Alumno {
 
     // Getters
     public String getNombre(){
-        return this.nombre;
+        return nombre;
     }
     public String getApellido(){
-        return this.apellido;
+        return apellido;
     }
     public String getDni(){
-        return this.dni;
+        return dni;
     }
     public String getNivel(){
-        return this.nivel;
+        return nivel;
     }
     public int getNumeroAlumno(){
-        return this.numeroAlumno;
+        return numeroAlumno;
+    }
+    public Inscripcion[] getInscripciones(){
+        return inscripciones;
+    }
+
+    // Metodos
+    public String descripcion(){
+        return "Alumno numero " + numeroAlumno + ": " + nombre + " " + apellido + ", DNI " + dni + ", nivel " + nivel;
+    }
+    public void mostrarInscripciones(){
+        if (inscripciones == null){
+            System.out.println("El alumno " + nombre + " " + apellido + " no esta inscripto en ningun turno.");
+        } else {
+            System.out.println("El alumno " + nombre + " " + apellido + "esta inscripto en los siguientes turnos: ");
+            for (Inscripcion inscripcion : inscripciones) {
+                inscripcion.mostrarInscripcion();
+            }
+        }
     }
 }
