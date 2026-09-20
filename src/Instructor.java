@@ -1,5 +1,3 @@
-package PACKAGE_NAME;
-
 public class Instructor {
     //Atributos en privado
     private String nombre;

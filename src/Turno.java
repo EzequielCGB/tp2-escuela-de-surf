@@ -1,5 +1,3 @@
-package PACKAGE_NAME;
-
 public class Turno {
     //Constante 
     public static final int CUPO_MAXIMO = 20;
@@ -43,7 +41,8 @@ public class Turno {
         }
         int presentes = 0;
         for (int i = 0; i < this.catidadInscriptos; i++){
-            if(this.incripciones[i].getAsistencia()){
+            Inscripcion inscrip = this.inscripciones[i];
+            if(inscrip != null && this.getAsistencia() != null && inscrip.getAsistencia().equalsIgnoreCase("presente")){
                 presentes++;
             }
         }
@@ -81,6 +80,7 @@ public class Turno {
     public Inscripcion[] getInscripciones(){
         return this.inscripciones;
     }
+    //Metodo descripcion
     public String descripcion(){
         String nombreInstructor;
         if (this.instructor != null){
