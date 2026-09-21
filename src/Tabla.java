@@ -6,6 +6,7 @@ public class Tabla {
     public Tabla(int codigo, double largo, String estado){
         this.codigo = codigo;
         setLargo(largo);
+        this.estado=estado;
     }
     public int getCodigo(){
         return codigo;
@@ -19,6 +20,15 @@ public class Tabla {
         }else{
             System.out.println("Error: El largo de la tabla debe estar entre 5 y 10 pies");
         }
+    }
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado){
+        this.estado = estado;
+    }
+    public void cambiarEstado(String nuevoEstado){
+        this.estado = nuevoEstado;
     }
     public String descripcion() {
         return "Tabla Nro: " + codigo + " - Largo: " + largo + "m - Estado: " + estado;
