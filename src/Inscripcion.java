@@ -5,6 +5,7 @@ public class Inscripcion {
     private Tabla tablaAsignada;
     private String asistencia;
 
+    // Constructores
     public Inscripcion(String fechaInscripcion, Alumno alumno, Turno turno, Tabla tabla, String asistencia){
         setFechaInscripcion(fechaInscripcion);
         setAlumno(alumno);
