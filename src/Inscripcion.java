@@ -58,4 +58,5 @@ public class Inscripcion {
         return "Inscripcion fecha " + fechaInscripcion + ", alumno " + alumno.getNombre() + " " + alumno.getApellido()
                 + ", asiganada la tabla codigo " + tablaAsignada.getCodigo() + ". Estado de la asistencia: " + asistencia;
     }
+
 }
