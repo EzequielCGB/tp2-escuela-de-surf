@@ -25,9 +25,7 @@ public class Inscripcion {
         this.alumno = alumno;
     }
     private void setTurno(Turno turno){
-        if (Turno.hayCupo()){
-            this.turno = turno;
-        }
+        this.turno = turno;
     }
     private void setAsistencia(String asistencia){
         if (asistencia.equalsIgnoreCase("presente") || asistencia.equalsIgnoreCase("ausente") || asistencia.equalsIgnoreCase("indefinido"))
