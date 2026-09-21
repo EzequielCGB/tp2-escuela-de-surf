@@ -51,4 +51,10 @@ public class Inscripcion {
     public String getAsistencia(){
         return asistencia;
     }
+
+    // Metodos
+    public String descripcion(){
+        return "Inscripcion fecha " + fechaInscripcion + ", alumno " + alumno.getNombre() + " " + alumno.getApellido()
+                + ", asiganada la tabla codigo " + tablaAsignada.getCodigo() + ". Estado de la asistencia: " + asistencia;
+    }
 }

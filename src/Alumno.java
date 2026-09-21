@@ -69,7 +69,7 @@ public class Alumno {
         } else {
             System.out.println("El alumno " + nombre + " " + apellido + "esta inscripto en los siguientes turnos: ");
             for (Inscripcion inscripcion : inscripciones) {
-                inscripcion.mostrarInscripcion();
+                System.out.println(inscripcion.descripcion());
             }
         }
     }
