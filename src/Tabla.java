@@ -8,6 +8,10 @@ public class Tabla {
         setLargo(largo);
         this.estado=estado;
     }
+    //Si no le ingresan un estado la asume como disponible.
+    public Tabla(int codigo, double largo){
+        this(codigo, largo, "disponible");
+    }
     public int getCodigo(){
         return codigo;
     }
