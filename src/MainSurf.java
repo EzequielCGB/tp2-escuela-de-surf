@@ -49,26 +49,28 @@ public class MainSurf {
         System.out.println(turno2.descripcion());
         System.out.println(turno3.descripcion());
 
-        System.out.println("ALUMNO Y SIS TURNOS");
+        System.out.println();
+
+        System.out.println("ALUMNO Y SUS TURNOS");
         System.out.println(alumno1.descripcion());
 
         Tabla[] tablas = {tablaUno, tablaDos, tablaTres, tablaCuatro};
         int enReparacion = 0;
         for( Tabla tab : tablas){
-            if (tab.getEstado.equalsIgnoreCase("reparacion")){
+            if (tab.getEstado().equalsIgnoreCase("reparacion")){
                 enReparacion++;
             }
         }
         System.out.println("Tablas en reparacion: " + enReparacion);
         System.out.println();
-        System.out.println("Porcentaje de asistencia en el turno 1: %.2f ", turno1.calcularPorcentajeAsistencia());
+        System.out.printf("Porcentaje de asistencia en el turno 1: %.2f%%\n ", turno1.calcularPorcentajeAsistencia());
 
         System.out.println("NUMEROS DE ALUMNO");
-        System.out.println(alumno1.getNombre() + " Nro: " + alumno1.getNumeroAlumno());
-        System.out.println(alumno2.getNombre() + " Nro: " + alumno2.getNumeroAlumno());
-        System.out.println(alumno3.getNombre() + " Nro: " + alumno3.getNumeroAlumno());
-        System.out.println(alumno4.getNombre() + " Nro: " + alumno4.getNumeroAlumno());
-        System.out.println(alumno5.getNombre() + " Nro: " + alumno5.getNumeroAlumno());
+        System.out.println(alumno1.getNombre() + " Nro de Alumno: " + alumno1.getNumeroAlumno());
+        System.out.println(alumno2.getNombre() + " Nro de Alumno: " + alumno2.getNumeroAlumno());
+        System.out.println(alumno3.getNombre() + " Nro de Alumno: " + alumno3.getNumeroAlumno());
+        System.out.println(alumno4.getNombre() + " Nro de Alumno: " + alumno4.getNumeroAlumno());
+        System.out.println(alumno5.getNombre() + " Nro de Alumno: " + alumno5.getNumeroAlumno());
 
     }  
 }
