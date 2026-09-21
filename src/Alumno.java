@@ -5,6 +5,7 @@ public class Alumno {
     private String dni;
     private String nivel;
     private Inscripcion[] inscripciones;
+    public static final int MAXIMO_INSCRIPCIONES = 10;
     private static int cantidadAlumnos = 0;
 
     // Constructor
@@ -13,6 +14,7 @@ public class Alumno {
         setApellido(apellido);
         setDni(dni);
         setNivel(nivel);
+        this.inscripciones = new Inscripcion[MAXIMO_INSCRIPCIONES];
         this.numeroAlumno = cantidadAlumnos + 1;
         cantidadAlumnos++;
     }
