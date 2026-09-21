@@ -6,15 +6,15 @@ public class Turno {
     private String fecha;
     private String horario;
     private Instructor instructor;
-    private Inscripcion[] incripciones;
-    private int catidadInscriptos;
+    private Inscripcion[] inscripciones;
+    private int cantidadInscriptos;
 
     //Constructor
     public Turno(String fecha, String horario, Instructor instructor){
         this.fecha = fecha;
         this.horario = horario;
         this.instructor = instructor;
-        this.inscripciones = new Incripcion[CUPO_MAXIMO];
+        this.inscripciones = new Inscripcion[CUPO_MAXIMO];
         this.cantidadInscriptos = 0;
     }
 
@@ -36,17 +36,17 @@ public class Turno {
 
     //Calcula el porcentaje de asistencia de este turno
     public double calcularPorcentajeAsistencia(){
-        if (this.catidadInscriptos == 0) {
+        if (this.cantidadInscriptos == 0) {
             return 0;
         }
         int presentes = 0;
-        for (int i = 0; i < this.catidadInscriptos; i++){
+        for (int i = 0; i < this.cantidadInscriptos; i++){
             Inscripcion inscrip = this.inscripciones[i];
-            if(inscrip != null && this.getAsistencia() != null && inscrip.getAsistencia().equalsIgnoreCase("presente")){
+            if (inscrip != null && "presente".equalsIgnoreCase(inscrip.getAsistencia())) {
                 presentes++;
             }
         }
-        return ((double) presentes / this.catidadInscriptos) * 100;  
+        return ((double) presentes / this.cantidadInscriptos) * 100;  
     }
 
     //Getters y Setters
@@ -67,15 +67,15 @@ public class Turno {
     }
 
     public Instructor getInstructor(){
-        return this.Instructor;
+        return this.instructor;
     }
     
-    public void setInstructor(Instructor intructor){
+    public void setInstructor(Instructor instructor){
         this.instructor = instructor;
     }
 
     public int getCantidadInscriptos(){
-        return this.catidadInscriptos;
+        return this.cantidadInscriptos;
     }
     public Inscripcion[] getInscripciones(){
         return this.inscripciones;
