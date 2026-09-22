@@ -1,18 +1,52 @@
-public class MainSurf {
-    public static void main(String[] args) {
-        Escuela escuela = new Escuela("NecoQuen Surf", "Monte Pasubio", "2262 443355");
+import java.util.Scanner;
 
-        Instructor instructor1 = new Instructor("Maria", "Perez", "M-001");
-        Instructor instructor2 = new Instructor("Ana", "Gomez", "M-002");
+public class MainSurf {
+    public static final int MAXIMO_INSTRUCTORES = 10;
+
+    public static void main(String[] args) {
+        String nombreEscuela;
+        String direccionEscuela;
+        String telefonoEscuela;
+        String[] nombresInstructores = new String[MAXIMO_INSTRUCTORES];
+        String[] apellidoInstructores = new String[MAXIMO_INSTRUCTORES];
+        String[] matriculaInstructores = new String[MAXIMO_INSTRUCTORES];
+        Instructor[] instructores = new Instructor[MAXIMO_INSTRUCTORES];
+
+        Scanner teclado =  new Scanner(System.in);
+
+        System.out.println("A continuacion se le pediran los datos de la escuela");
+        System.out.println("Ingrese el nombre de la escuela: ");
+        nombreEscuela = teclado.nextLine();
+        System.out.println("Ingrese la direccion de la escuela: ");
+        direccionEscuela = teclado.nextLine();
+        System.out.println("Ingrese el telefono de la escuela: ");
+        telefonoEscuela = teclado.nextLine();
+        Escuela escuela = new Escuela(nombreEscuela, direccionEscuela, telefonoEscuela);
+
+        System.out.println("A continuacion se le pedira los datos de uno o mas instructores");
+        System.out.println("Tenga en cuenta que debe ingresar datos para por lo menos un instructor");
+        String continuarInstructor;
+        do{
+            int cantidadInstructores = Instructor.getCantidadInstructor();
+            System.out.println("Ingrese el nombre del instructor: ");
+            nombresInstructores[cantidadInstructores] = teclado.nextLine();
+            System.out.println("Ingrese el apellido del instructor: ");
+            apellidoInstructores[cantidadInstructores] = teclado.nextLine();
+            System.out.println("Ingrese la matricula del instructor: ");
+            matriculaInstructores[cantidadInstructores] = teclado.nextLine();
+            instructores[cantidadInstructores] = new Instructor(nombresInstructores[cantidadInstructores], apellidoInstructores[cantidadInstructores], matriculaInstructores[cantidadInstructores]);
+            System.out.println("Si desea agregar otro instructor ingrese 'si'");
+            continuarInstructor = teclado.nextLine();
+        }while(continuarInstructor.equalsIgnoreCase("si"));
 
         Tabla tablaUno = new Tabla(101, 7.1, "disponible");
         Tabla tablaDos = new Tabla(102, 8.1, "disponible");
         Tabla tablaTres = new Tabla(103, 6.9, "reparacion");
         Tabla tablaCuatro = new Tabla(104, 9.1, "disponible");
 
-        Turno turno1 = new Turno("16-01-26", "08:00", instructor1);
-        Turno turno2 = new Turno("17-01-26", "10:00", instructor1);
-        Turno turno3 = new Turno("16-01-26", "09:30", instructor2);
+        Turno turno1 = new Turno("16-01-26", "08:00", instructores[1]);
+        Turno turno2 = new Turno("17-01-26", "10:00", instructores[1]);
+        Turno turno3 = new Turno("16-01-26", "09:30", instructores[1]);
 
         escuela.agregarTurno(turno1);
         escuela.agregarTurno(turno2);
@@ -44,6 +78,14 @@ public class MainSurf {
             }
         }
         System.out.println();
+        System.out.println("Datos de la escuela");
+        System.out.println(escuela.descripcion());
+        System.out.println();
+        System.out.println("Datos de los instructores");
+        for (int i = 0; i < Instructor.getCantidadInstructor(); i++){
+            System.out.println(instructores[i].descripcion());
+        }
+        System.out.println();
         System.out.println("LISTA DE TURNOS");
         System.out.println(turno1.descripcion());
         System.out.println(turno2.descripcion());
@@ -72,5 +114,6 @@ public class MainSurf {
         System.out.println(alumno4.getNombre() + " Nro de Alumno: " + alumno4.getNumeroAlumno());
         System.out.println(alumno5.getNombre() + " Nro de Alumno: " + alumno5.getNumeroAlumno());
 
+        teclado.close();
     }  
 }
