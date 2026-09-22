@@ -60,6 +60,9 @@ public class Alumno {
     public Inscripcion[] getInscripciones(){
         return inscripciones;
     }
+    public static int getCantidadAlumnos(){
+        return cantidadAlumnos;
+    }
 
     // Metodos
     public String descripcion(){

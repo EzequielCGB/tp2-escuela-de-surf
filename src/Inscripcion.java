@@ -4,6 +4,7 @@ public class Inscripcion {
     private Turno turno;
     private Tabla tablaAsignada;
     private String asistencia;
+    private static int cantidadInscripciones = 0;
 
     // Constructores
     public Inscripcion(String fechaInscripcion, Alumno alumno, Turno turno, Tabla tabla, String asistencia){
@@ -12,6 +13,7 @@ public class Inscripcion {
         setTurno(turno);
         setTablaAsignada(tabla);
         setAsistencia(asistencia);
+        cantidadInscripciones++;
     }
     public Inscripcion(String fechaInscripcion, Alumno alumno, Turno turno, Tabla tabla){
         this(fechaInscripcion, alumno, turno, tabla, "Indefinido");
@@ -51,6 +53,9 @@ public class Inscripcion {
     }
     public String getAsistencia(){
         return asistencia;
+    }
+    public static int getCantidadInscripciones(){
+        return cantidadInscripciones;
     }
 
     // Metodos

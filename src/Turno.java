@@ -1,6 +1,6 @@
 public class Turno {
     //Constante 
-    public static final int CUPO_MAXIMO = 20;
+    public static final int CUPO_MAXIMO = MainSurf.MAXIMO_TURNOS;
 
     //Atributos
     private String fecha;
@@ -8,6 +8,7 @@ public class Turno {
     private Instructor instructor;
     private Inscripcion[] inscripciones;
     private int cantidadInscriptos;
+    private static int cantidadTurnos = 0;
 
     //Constructor
     public Turno(String fecha, String horario, Instructor instructor){
@@ -16,6 +17,7 @@ public class Turno {
         this.instructor = instructor;
         this.inscripciones = new Inscripcion[CUPO_MAXIMO];
         this.cantidadInscriptos = 0;
+        cantidadTurnos++;
     }
 
     //Verific si hay cupo disponible para inscribirse
@@ -79,6 +81,10 @@ public class Turno {
     public Inscripcion[] getInscripciones(){
         return this.inscripciones;
     }
+    public static int getCantidadTurnos(){
+        return cantidadTurnos;
+    }
+
     public String descripcion(){
         String nombreInstructor;
         if (this.instructor != null){
