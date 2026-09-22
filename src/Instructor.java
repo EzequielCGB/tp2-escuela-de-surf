@@ -38,7 +38,7 @@ public class Instructor {
         this.matricula = matricula;
     }
 
-    public int getCantidadInstructor(){
+    public static int getCantidadInstructor(){
         return cantidadInstructor;
     }
     
