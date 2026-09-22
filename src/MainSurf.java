@@ -2,8 +2,10 @@ import java.util.Scanner;
 
 public class MainSurf {
     public static final int MAXIMO_INSTRUCTORES = 10;
+    public static final int MAXIMO_TABLAS = 20;
 
     public static void main(String[] args) {
+        String continuar;
         String nombreEscuela;
         String direccionEscuela;
         String telefonoEscuela;
@@ -11,6 +13,10 @@ public class MainSurf {
         String[] apellidoInstructores = new String[MAXIMO_INSTRUCTORES];
         String[] matriculaInstructores = new String[MAXIMO_INSTRUCTORES];
         Instructor[] instructores = new Instructor[MAXIMO_INSTRUCTORES];
+        String[] codigosTablas = new String[MAXIMO_TABLAS];
+        double[] largoTablas = new double[MAXIMO_TABLAS];
+        String[] estadoTablas = new String[MAXIMO_TABLAS];
+        Tabla[] tablas = new Tabla[MAXIMO_TABLAS];
 
         Scanner teclado =  new Scanner(System.in);
 
@@ -24,8 +30,7 @@ public class MainSurf {
         Escuela escuela = new Escuela(nombreEscuela, direccionEscuela, telefonoEscuela);
 
         System.out.println("A continuacion se le pedira los datos de uno o mas instructores");
-        System.out.println("Tenga en cuenta que debe ingresar datos para por lo menos un instructor");
-        String continuarInstructor;
+        System.out.println("Tenga en cuenta que debe ingresar datos para por lo menos un instructor con un maximo de " + MAXIMO_INSTRUCTORES + " instructores");
         do{
             int cantidadInstructores = Instructor.getCantidadInstructor();
             System.out.println("Ingrese el nombre del instructor: ");
@@ -36,13 +41,24 @@ public class MainSurf {
             matriculaInstructores[cantidadInstructores] = teclado.nextLine();
             instructores[cantidadInstructores] = new Instructor(nombresInstructores[cantidadInstructores], apellidoInstructores[cantidadInstructores], matriculaInstructores[cantidadInstructores]);
             System.out.println("Si desea agregar otro instructor ingrese 'si'");
-            continuarInstructor = teclado.nextLine();
-        }while(continuarInstructor.equalsIgnoreCase("si"));
+            continuar = teclado.nextLine();
+        }while(continuar.equalsIgnoreCase("si"));
 
-        Tabla tablaUno = new Tabla(101, 7.1, "disponible");
-        Tabla tablaDos = new Tabla(102, 8.1, "disponible");
-        Tabla tablaTres = new Tabla(103, 6.9, "reparacion");
-        Tabla tablaCuatro = new Tabla(104, 9.1, "disponible");
+        System.out.println("A continuacion se le pedira los datos de una o mas tablas");
+        System.out.println("Tenga en cuenta que debe ingresar datos para por lo menos una tabla con un maximo de " + MAXIMO_TABLAS + " tablas");
+        do{
+            int cantidadTablas = Tabla.getCantidadTablas();
+            System.out.println("Ingrese el codigo de la tabla: ");
+            codigosTablas[cantidadTablas] = teclado.nextLine();
+            System.out.println("Ingrese el largo de la tabla: ");
+            largoTablas[cantidadTablas] = teclado.nextDouble();
+            teclado.nextLine();
+            System.out.println("Ingrese el estado de la tabla('disponible' o 'reparacion'): ");
+            estadoTablas[cantidadTablas] = teclado.nextLine();
+            tablas[cantidadTablas] = new Tabla(codigosTablas[cantidadTablas], largoTablas[cantidadTablas], estadoTablas[cantidadTablas]);
+            System.out.println("Si desea agregar otra tabla ingrese 'si'");
+            continuar = teclado.nextLine();
+        }while(continuar.equalsIgnoreCase("si"));
 
         Turno turno1 = new Turno("16-01-26", "08:00", instructores[1]);
         Turno turno2 = new Turno("17-01-26", "10:00", instructores[1]);
@@ -58,25 +74,25 @@ public class MainSurf {
         Alumno alumno4 = new Alumno("Juan","Diaz", "37444444", "intermedio" );
         Alumno alumno5 = new Alumno("Magdalena","Sanchez", "37555555", "principiante" );
 
-        Inscripcion inscripcion1 = new Inscripcion("25-01-26", alumno1, turno1, tablaUno, "presente");
-        Inscripcion inscripcion2 = new Inscripcion("18-01-26", alumno1, turno1, tablaDos, "presente");
-        Inscripcion inscripcion3 = new Inscripcion("16-01-26", alumno1, turno1, tablaCuatro, "ausente");
-        Inscripcion inscripcion4 = new Inscripcion("25-01-26", alumno1, turno1, tablaUno, "presente");
-    
-        turno1.agregarInscripto(inscripcion1);
-        turno1.agregarInscripto(inscripcion2);
-        turno2.agregarInscripto(inscripcion3);
-        turno2.agregarInscripto(inscripcion4);
-
-        System.out.println("PROBANDO CUPO MAXIMO");
-        for(int i = 0; i< 21; i++){
-            Inscripcion inscripPrueba = new Inscripcion("22-01-26", alumno4, turno3, tablaCuatro, "presente");
-            boolean agregado = turno3.agregarInscripto(inscripPrueba);
-            if(!agregado){
-                System.out.println("Cupo maximo alcanzado en el intento " + (i+1));
-                break;
-            }
-        }
+//        Inscripcion inscripcion1 = new Inscripcion("25-01-26", alumno1, turno1, tablaUno, "presente");
+//        Inscripcion inscripcion2 = new Inscripcion("18-01-26", alumno1, turno1, tablaDos, "presente");
+//        Inscripcion inscripcion3 = new Inscripcion("16-01-26", alumno1, turno1, tablaCuatro, "ausente");
+//        Inscripcion inscripcion4 = new Inscripcion("25-01-26", alumno1, turno1, tablaUno, "presente");
+//
+//        turno1.agregarInscripto(inscripcion1);
+//        turno1.agregarInscripto(inscripcion2);
+//        turno2.agregarInscripto(inscripcion3);
+//        turno2.agregarInscripto(inscripcion4);
+//
+//        System.out.println("PROBANDO CUPO MAXIMO");
+//        for(int i = 0; i< 21; i++){
+//            Inscripcion inscripPrueba = new Inscripcion("22-01-26", alumno4, turno3, tablaCuatro, "presente");
+//            boolean agregado = turno3.agregarInscripto(inscripPrueba);
+//            if(!agregado){
+//                System.out.println("Cupo maximo alcanzado en el intento " + (i+1));
+//                break;
+//            }
+//        }
         System.out.println();
         System.out.println("Datos de la escuela");
         System.out.println(escuela.descripcion());
@@ -84,6 +100,11 @@ public class MainSurf {
         System.out.println("Datos de los instructores");
         for (int i = 0; i < Instructor.getCantidadInstructor(); i++){
             System.out.println(instructores[i].descripcion());
+        }
+        System.out.println();
+        System.out.println("Datos de las tablas");
+        for (int i = 0; i < Tabla.getCantidadTablas(); i++){
+            System.out.println(tablas[i].descripcion());
         }
         System.out.println();
         System.out.println("LISTA DE TURNOS");
@@ -96,14 +117,13 @@ public class MainSurf {
         System.out.println("ALUMNO Y SUS TURNOS");
         System.out.println(alumno1.descripcion());
 
-        Tabla[] tablas = {tablaUno, tablaDos, tablaTres, tablaCuatro};
-        int enReparacion = 0;
-        for( Tabla tab : tablas){
-            if (tab.getEstado().equalsIgnoreCase("reparacion")){
-                enReparacion++;
-            }
-        }
-        System.out.println("Tablas en reparacion: " + enReparacion);
+//        int enReparacion = 0;
+//        for( Tabla tab : tablas){
+//            if (tab.getEstado().equalsIgnoreCase("reparacion")){
+//                enReparacion++;
+//            }
+//        }
+//        System.out.println("Tablas en reparacion: " + enReparacion);
         System.out.println();
         System.out.printf("Porcentaje de asistencia en el turno 1: %.2f%%\n ", turno1.calcularPorcentajeAsistencia());
 
