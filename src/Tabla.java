@@ -1,5 +1,5 @@
 public class Tabla {
-    private String codigo;
+    private final String codigo;
     private double largo;
     private String estado;
 
