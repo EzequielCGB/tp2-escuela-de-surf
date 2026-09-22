@@ -3,12 +3,14 @@ public class Instructor {
     private String nombre;
     private String apellido;
     private String matricula;
+    private static int cantidadInstructor = 0;
 
     //Constructor
     public Instructor(String nombre, String apellido, String matricula){
         this.nombre = nombre;
         this.apellido = apellido;
-        this.matricula = matricula;  
+        this.matricula = matricula;
+        cantidadInstructor++;
     }
 
     //Getters y Setters
@@ -34,6 +36,10 @@ public class Instructor {
 
     public void setMatricula(String matricula){
         this.matricula = matricula;
+    }
+
+    public int getCantidadInstructor(){
+        return cantidadInstructor;
     }
     
     //Metodo de descripcion
