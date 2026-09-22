@@ -1,18 +1,18 @@
 public class Tabla {
-    private int codigo;
+    private String codigo;
     private double largo;
     private String estado;
 
-    public Tabla(int codigo, double largo, String estado){
+    public Tabla(String codigo, double largo, String estado){
         this.codigo = codigo;
         setLargo(largo);
         this.estado=estado;
     }
     //Si no le ingresan un estado la asume como disponible.
-    public Tabla(int codigo, double largo){
+    public Tabla(String codigo, double largo){
         this(codigo, largo, "disponible");
     }
-    public int getCodigo(){
+    public String getCodigo(){
         return codigo;
     }
     public double getLargo(){
