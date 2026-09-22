@@ -83,6 +83,42 @@ public class MainSurf {
         } else {
             System.out.println("No se pudo realizar la inscripcion por falta de cupo");
         }
+
+        //forzando el cupo maximo para probar
+        System.out.println("\n----- CUPO MAXIMO ----- ");
+        for(int i = 0; i < 21; i++){
+            Inscripcion inscripcionPrueba = new Inscripcion("16-12-2026", alumno, turno, tabla, "presente");
+            boolean agregado = turno.agregarInscripto(inscripcionPrueba);
+            if(!agregado){
+                System.out.println("Cupo maximo alcanzado en el intento " + (i + 1));
+                break;
+            }
+        }
+
+        //Mostrar
+        System.out.println("\n----- Lista de TURNOS ----- ");
+        System.out.println(turno.descripcion());
+
+        System.out.println("\n----- DATOS DEL ALUMNO Y SU INSCRIPCION ----- ");
+        System.out.println(alumno.descripcion());
+        System.out.println(inscripcion.descripcion());
+
+        //Tablas en reparacion
+        Tabla[] tablas = {tabla};
+        int enRepacion = 0;
+        for(Tabla tbla : tablas){
+            if(tbla.getEstado().equalsIgnoreCase("reparacion")){
+                enRepacion++;
+            }
+        }
+        System.out.println("Tablas en reparacion: " + enRepacion);
+
+        //porcentaje de asistencia
+        System.out.printf("Porcentaje de asistencia del turno: %.2f", turno.calcularPorcentajeAsistencia());
+
+        System.out.println("\n----- Verificacion de Nro de alumno ----- ");
+        System.out.println(alumno.getNombre() + " " + alumno.getApellido() + " Nro de Alumno: " + alumno.getNumeroAlumno());
+
         scanner.close();
     }  
 }
