@@ -26,7 +26,7 @@ public class Turno {
     //Para agregar una inscripcion respetando el cupo
     public boolean agregarInscripto(Inscripcion inscripcion){
         if (!hayCupo()){
-            System.out.println("Error: El turno de la fecha " + this.fecha + " a las " + this.horario + "llego a su cupo maximo (" + CUPO_MAXIMO + ")");
+            System.out.println("Error: El turno de la fecha " + this.fecha + " a las " + this.horario + " llego a su cupo maximo (" + CUPO_MAXIMO + ")");
             return false;
         }
         this.inscripciones[this.cantidadInscriptos] = inscripcion;
@@ -41,12 +41,11 @@ public class Turno {
         }
         int presentes = 0;
         for (int i = 0; i < this.cantidadInscriptos; i++){
-            Inscripcion inscrip = this.inscripciones[i];
-            if (inscrip != null && "presente".equalsIgnoreCase(inscrip.getAsistencia())) {
+            if(this.inscripciones[i].getAsistencia().equalsIgnoreCase("presente")){
                 presentes++;
             }
         }
-        return ((double) presentes / this.cantidadInscriptos) * 100;  
+        return ((double) presentes / this.cantidadInscriptos) * 100;
     }
 
     //Getters y Setters
