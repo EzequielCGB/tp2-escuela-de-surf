@@ -60,8 +60,8 @@ public class Inscripcion {
 
     // Metodos
     public String descripcion(){
-        return "Inscripcion fecha " + fechaInscripcion + "al turno con fecha " + turno.getFecha() + ". Alumno " + alumno.getNombre() + " " + alumno.getApellido()
-                + ", asiganada la tabla codigo " + tablaAsignada.getCodigo() + ". Estado de la asistencia: " + asistencia;
+        return "Inscripcion fecha " + fechaInscripcion + " al turno con fecha " + turno.getFecha() + ". Alumno " + alumno.getNombre() + " " + alumno.getApellido()
+                + ", asignada la tabla codigo " + tablaAsignada.getCodigo() + ". Estado de la asistencia: " + asistencia;
     }
 
 }

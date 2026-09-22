@@ -9,38 +9,21 @@ public class MainSurf {
 
     public static void main(String[] args) {
         String continuar;
-        String nombreEscuela;
-        String direccionEscuela;
-        String telefonoEscuela;
-        String[] nombresInstructores = new String[MAXIMO_INSTRUCTORES];
-        String[] apellidoInstructores = new String[MAXIMO_INSTRUCTORES];
-        String[] matriculaInstructores = new String[MAXIMO_INSTRUCTORES];
         Instructor[] instructores = new Instructor[MAXIMO_INSTRUCTORES];
-        String[] codigosTablas = new String[MAXIMO_TABLAS];
-        double[] largoTablas = new double[MAXIMO_TABLAS];
-        String[] estadoTablas = new String[MAXIMO_TABLAS];
         Tabla[] tablas = new Tabla[MAXIMO_TABLAS];
-        String[] fechasTurnos = new String[MAXIMO_TURNOS];
-        String[] horariosTurnos = new String[MAXIMO_TURNOS];
         Turno[] turnos = new Turno[MAXIMO_TURNOS];
-        String[] nombresAlumnos = new String[MAXIMO_ALUMNOS];
-        String[] apellidosAlumnos = new String[MAXIMO_ALUMNOS];
-        String[] dniAlumnos = new String[MAXIMO_ALUMNOS];
-        String[] nivelAlumnos = new String[MAXIMO_ALUMNOS];
         Alumno[] alumnos = new Alumno[MAXIMO_ALUMNOS];
-        String[] fechaInscripciones = new String[MAXIMO_INSCRIPCIONES];
-        String[] estadoInscripciones = new String[MAXIMO_INSCRIPCIONES];
         Inscripcion[] inscripciones = new Inscripcion[MAXIMO_INSCRIPCIONES];
 
         Scanner teclado =  new Scanner(System.in);
 
         System.out.println("A continuacion se le pediran los datos de la escuela");
         System.out.println("Ingrese el nombre de la escuela: ");
-        nombreEscuela = teclado.nextLine();
+        String nombreEscuela = teclado.nextLine();
         System.out.println("Ingrese la direccion de la escuela: ");
-        direccionEscuela = teclado.nextLine();
+        String direccionEscuela = teclado.nextLine();
         System.out.println("Ingrese el telefono de la escuela: ");
-        telefonoEscuela = teclado.nextLine();
+        String telefonoEscuela = teclado.nextLine();
         Escuela escuela = new Escuela(nombreEscuela, direccionEscuela, telefonoEscuela);
 
         System.out.println("A continuacion se le pedira los datos de uno o mas instructores");
@@ -48,12 +31,12 @@ public class MainSurf {
         do{
             int cantidadInstructores = Instructor.getCantidadInstructor();
             System.out.println("Ingrese el nombre del instructor: ");
-            nombresInstructores[cantidadInstructores] = teclado.nextLine();
+            String nombre = teclado.nextLine();
             System.out.println("Ingrese el apellido del instructor: ");
-            apellidoInstructores[cantidadInstructores] = teclado.nextLine();
+            String apellido = teclado.nextLine();
             System.out.println("Ingrese la matricula del instructor: ");
-            matriculaInstructores[cantidadInstructores] = teclado.nextLine();
-            instructores[cantidadInstructores] = new Instructor(nombresInstructores[cantidadInstructores], apellidoInstructores[cantidadInstructores], matriculaInstructores[cantidadInstructores]);
+            String matricula = teclado.nextLine();
+            instructores[cantidadInstructores] = new Instructor(nombre, apellido, matricula);
             System.out.println("Si desea agregar otro instructor ingrese 'si'");
             continuar = teclado.nextLine();
         }while(continuar.equalsIgnoreCase("si"));
@@ -63,13 +46,13 @@ public class MainSurf {
         do{
             int cantidadTablas = Tabla.getCantidadTablas();
             System.out.println("Ingrese el codigo de la tabla: ");
-            codigosTablas[cantidadTablas] = teclado.nextLine();
+            String codigo = teclado.nextLine();
             System.out.println("Ingrese el largo de la tabla(Debe estar entre 5 y 10): ");
-            largoTablas[cantidadTablas] = teclado.nextDouble();
+            double largo = teclado.nextDouble();
             teclado.nextLine();
             System.out.println("Ingrese el estado de la tabla('disponible' o 'reparacion'): ");
-            estadoTablas[cantidadTablas] = teclado.nextLine();
-            tablas[cantidadTablas] = new Tabla(codigosTablas[cantidadTablas], largoTablas[cantidadTablas], estadoTablas[cantidadTablas]);
+            String estado = teclado.nextLine();
+            tablas[cantidadTablas] = new Tabla(codigo, largo, estado);
             System.out.println("Si desea agregar otra tabla ingrese 'si'");
             continuar = teclado.nextLine();
         }while(continuar.equalsIgnoreCase("si"));
@@ -80,9 +63,9 @@ public class MainSurf {
             int cantidadTurnos = Turno.getCantidadTurnos();
             int numeroInstructor;
             System.out.println("Ingrese la fecha del turno: ");
-            fechasTurnos[cantidadTurnos] = teclado.nextLine();
+            String fecha = teclado.nextLine();
             System.out.println("Ingrese el horario del turno: ");
-            horariosTurnos[cantidadTurnos] = teclado.nextLine();
+            String horario = teclado.nextLine();
             do{
                 System.out.println("Ingrese el numero de instructor para el turno (Desde el 1 hasta el " + Instructor.getCantidadInstructor() + " en el orden que fueron ingresados)");
                 numeroInstructor = teclado.nextInt();
@@ -93,7 +76,7 @@ public class MainSurf {
                     System.out.println("El numero del instructor debe estar entre el 1 y el " + Instructor.getCantidadInstructor());
                 }
             } while (numeroInstructor >= Instructor.getCantidadInstructor());
-            turnos[cantidadTurnos] = new Turno(fechasTurnos[cantidadTurnos], horariosTurnos[cantidadTurnos], instructores[numeroInstructor]);
+            turnos[cantidadTurnos] = new Turno(fecha, horario, instructores[numeroInstructor]);
             escuela.agregarTurno(turnos[cantidadTurnos]);
             System.out.println("Si desea agregar otro turno ingrese 'si'");
             continuar = teclado.nextLine();
@@ -104,14 +87,14 @@ public class MainSurf {
         do{
             int cantidadAlumnos = Alumno.getCantidadAlumnos();
             System.out.println("Ingrese el nombre del alumno: ");
-            nombresAlumnos[cantidadAlumnos] = teclado.nextLine();
+            String nombre = teclado.nextLine();
             System.out.println("Ingrese el apellido del alumno: ");
-            apellidosAlumnos[cantidadAlumnos] = teclado.nextLine();
+            String apellido = teclado.nextLine();
             System.out.println("Ingrese el dni del alumno: ");
-            dniAlumnos[cantidadAlumnos] = teclado.nextLine();
+            String dni = teclado.nextLine();
             System.out.println("Ingrese el nivel del alumno('principiante' o 'intermedio')");
-            nivelAlumnos[cantidadAlumnos] = teclado.nextLine();
-            alumnos[cantidadAlumnos] = new Alumno(nombresAlumnos[cantidadAlumnos], apellidosAlumnos[cantidadAlumnos], dniAlumnos[cantidadAlumnos], nivelAlumnos[cantidadAlumnos]);
+            String nivel = teclado.nextLine();
+            alumnos[cantidadAlumnos] = new Alumno(nombre, apellido, dni, nivel);
             System.out.println("Si desea agregar otro alumno ingrese 'si'");
             continuar = teclado.nextLine();
         }while(continuar.equalsIgnoreCase("si"));
