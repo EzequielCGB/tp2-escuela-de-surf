@@ -19,6 +19,14 @@ E.Cepeda: Creación y desarrollo de la logica y el codigo de las clases Turno e 
 
 *El trabajo practico N2 de programacion, en general fue pensado y debatido entre los 3 miembros del equipo, dividiendo tareas y luego unificando ideas individuales en ideas y conclusiones de grupo. Tanto las preguntas de la parte B como de la seccion "Preguntas para el README" fueron charladas y contestadas por todos.
 -----------------------
+Cómo compilar y ejecutar:
+
+Asegúrese de tener la consola sobre la carpeta src y ejecute los siguientes comandos:
+- javac *.java
+- java MainSurf
+
+Una vez ejecutado el segundo comando el programa iniciará su ejecución. Siga de forma precisa las indicaciones que se le darán por consola.
+-----------------------
 Preguntas
 
 1. Pregunta: El enunciado tiene una relación que necesitó una clase propia. Expliquen qué pasaba si no la creaban, con
