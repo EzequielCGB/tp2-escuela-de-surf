@@ -2,14 +2,14 @@ public class Escuela {
     private String nombre;
     private String direccion;
     private String telefono;
-    private Turno[] turno;
+    private Turno[] turnos;
     private int cantidadTurnos;
 
     public Escuela(String nombre, String direccion, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.turno = new Turno[100];
+        this.turnos = new Turno[100];
         this.cantidadTurnos = 0;
     }
     public Escuela(String nombre, String direccion) {
@@ -30,9 +30,12 @@ public class Escuela {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+    public Turno[] getTurnos(){
+        return turnos;
+    }
     public boolean agregarTurno(Turno unTurno){
-        if(this.cantidadTurnos<this.turno.length){
-            this.turno[this.cantidadTurnos] = unTurno;
+        if(this.cantidadTurnos<this.turnos.length){
+            this.turnos[this.cantidadTurnos] = unTurno;
             this.cantidadTurnos++;
             return true;
         }else{

@@ -65,7 +65,7 @@ public class MainSurf {
         }while(continuar.equalsIgnoreCase("si"));
     }
 
-    public static Turno cargarTurno(Instructor[] instructores, Escuela escuela){
+    public static void cargarTurno(Instructor[] instructores, Escuela escuela){
         Scanner teclado = new Scanner(System.in);
         Turno turno;
         int numeroInstructor;
@@ -86,8 +86,6 @@ public class MainSurf {
         } while (numeroInstructor >= Instructor.getCantidadInstructor());
         turno = new Turno(fecha, horario, instructores[numeroInstructor]);
         escuela.agregarTurno(turno);
-
-        return turno;
     }
     public static void cargarTurnos(Turno[] turnos, Instructor[] instructores, Escuela escuela){
         Scanner teclado = new Scanner(System.in);
@@ -96,8 +94,7 @@ public class MainSurf {
         System.out.println("A continuacion se le pedira los datos de uno o mas turnos");
         System.out.println("Tenga en cuenta que debe ingresar datos para por lo menos un turno con un maximo de " + MAXIMO_TURNOS + " turnos");
         do{
-            int cantidadTurnos = Turno.getCantidadTurnos();
-            turnos[cantidadTurnos] = cargarTurno(instructores, escuela);
+            cargarTurno(instructores, escuela);
             System.out.println("Si desea agregar otro turno ingrese 'si'");
             continuar = teclado.nextLine();
         }while(continuar.equalsIgnoreCase("si"));
@@ -244,7 +241,6 @@ public class MainSurf {
         String continuar;
         Instructor[] instructores = new Instructor[MAXIMO_INSTRUCTORES];
         Tabla[] tablas = new Tabla[MAXIMO_TABLAS];
-        Turno[] turnos = new Turno[MAXIMO_TURNOS];
         Alumno[] alumnos = new Alumno[MAXIMO_ALUMNOS];
         Inscripcion[] inscripciones = new Inscripcion[MAXIMO_INSCRIPCIONES];
 
@@ -261,17 +257,17 @@ public class MainSurf {
 
         cargarInstructores(instructores);
         cargarTablas(tablas);
-        cargarTurnos(turnos, instructores, escuela);
+        cargarTurnos(escuela.getTurnos(), instructores, escuela);
         cargarAlumnos(alumnos);
-        cargarInscripciones(inscripciones, alumnos, turnos, tablas);
+        cargarInscripciones(inscripciones, alumnos, escuela.getTurnos(), tablas);
 
         mostrarEscuela(escuela);
         mostrarInstructores(instructores);
         mostrarTablas(tablas);
         mostrarAlumnos(alumnos);
         mostrarInscripciones(inscripciones);
-        mostrarTurnos(turnos);
-        System.out.printf("%nPorcentaje de asistencia al primer turno ingresado: %.2f", turnos[0].calcularPorcentajeAsistencia());
+        mostrarTurnos(escuela.getTurnos());
+        System.out.printf("%nPorcentaje de asistencia al primer turno ingresado: %.2f", escuela.getTurnos()[0].calcularPorcentajeAsistencia());
 
         teclado.close();
     }  
