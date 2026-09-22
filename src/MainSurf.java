@@ -268,9 +268,10 @@ public class MainSurf {
         mostrarEscuela(escuela);
         mostrarInstructores(instructores);
         mostrarTablas(tablas);
-        mostrarTurnos(turnos);
         mostrarAlumnos(alumnos);
         mostrarInscripciones(inscripciones);
+        mostrarTurnos(turnos);
+        System.out.printf("%nPorcentaje de asistencia al primer turno ingresado: %.2f", turnos[0].calcularPorcentajeAsistencia());
 
         teclado.close();
     }  
