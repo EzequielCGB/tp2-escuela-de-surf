@@ -5,6 +5,7 @@ public class MainSurf {
     public static final int MAXIMO_TABLAS = 20;
     public static final int MAXIMO_ALUMNOS = 50;
     public static final int MAXIMO_TURNOS = 20;
+    public static final int MAXIMO_INSCRIPCIONES = 100;
 
     public static void main(String[] args) {
         String continuar;
@@ -27,6 +28,9 @@ public class MainSurf {
         String[] dniAlumnos = new String[MAXIMO_ALUMNOS];
         String[] nivelAlumnos = new String[MAXIMO_ALUMNOS];
         Alumno[] alumnos = new Alumno[MAXIMO_ALUMNOS];
+        String[] fechaInscripciones = new String[MAXIMO_INSCRIPCIONES];
+        String[] estadoInscripciones = new String[MAXIMO_INSCRIPCIONES];
+        Inscripcion[] inscripciones = new Inscripcion[MAXIMO_INSCRIPCIONES];
 
         Scanner teclado =  new Scanner(System.in);
 
@@ -112,25 +116,66 @@ public class MainSurf {
             continuar = teclado.nextLine();
         }while(continuar.equalsIgnoreCase("si"));
 
-//        Inscripcion inscripcion1 = new Inscripcion("25-01-26", alumno1, turno1, tablaUno, "presente");
-//        Inscripcion inscripcion2 = new Inscripcion("18-01-26", alumno1, turno1, tablaDos, "presente");
-//        Inscripcion inscripcion3 = new Inscripcion("16-01-26", alumno1, turno1, tablaCuatro, "ausente");
-//        Inscripcion inscripcion4 = new Inscripcion("25-01-26", alumno1, turno1, tablaUno, "presente");
-//
-//        turno1.agregarInscripto(inscripcion1);
-//        turno1.agregarInscripto(inscripcion2);
-//        turno2.agregarInscripto(inscripcion3);
-//        turno2.agregarInscripto(inscripcion4);
-//
-//        System.out.println("PROBANDO CUPO MAXIMO");
-//        for(int i = 0; i< 21; i++){
-//            Inscripcion inscripPrueba = new Inscripcion("22-01-26", alumno4, turno3, tablaCuatro, "presente");
-//            boolean agregado = turno3.agregarInscripto(inscripPrueba);
-//            if(!agregado){
-//                System.out.println("Cupo maximo alcanzado en el intento " + (i+1));
-//                break;
-//            }
-//        }
+        System.out.println("A continuacion se le pedira los datos de una o mas inscripciones");
+        System.out.println("Tenga en cuenta que debe ingresar datos para por lo menos una con un maximo de " + MAXIMO_INSCRIPCIONES + " inscripciones");
+        do{
+            String continuarInscripciones = "si";
+            int alumno = 0;
+            int turno = 0;
+            int tabla = 0;
+            int cantidadInscripciones = Inscripcion.getCantidadInscripciones();
+            System.out.println("Ingrese la fecha de la inscripcion: ");
+            String fecha = teclado.nextLine();
+            for (int i = 0; i < Alumno.getCantidadAlumnos(); i++) {
+                System.out.println(alumnos[i].descripcion());
+                System.out.println("Es este el alumno que desea inscribir? Si es asi ingrese 'si'");
+                continuarInscripciones = teclado.nextLine();
+                if (continuarInscripciones.equalsIgnoreCase("si")) {
+                    alumno = i;
+                    break;
+                }
+            }
+            if (!continuarInscripciones.equalsIgnoreCase("si")){
+                System.out.println("No se ha asignado ningun alumno, se volvera al inicio de la inscripcion.");
+                continuar = "si";
+                continue;
+            }
+            for (int i = 0; i < Turno.getCantidadTurnos(); i++) {
+                System.out.println(turnos[i].descripcion());
+                System.out.println("Es este el turno al que desea inscribir? Si es asi ingrese 'si'");
+                continuarInscripciones = teclado.nextLine();
+                if (continuarInscripciones.equalsIgnoreCase("si")) {
+                    turno = i;
+                    break;
+                }
+            }
+            if (!continuarInscripciones.equalsIgnoreCase("si")){
+                System.out.println("No se ha asignado ningun turno, se volvera al inicio de la inscripcion.");
+                continuar = "si";
+                continue;
+            }
+            for (int i = 0; i < Tabla.getCantidadTablas(); i++) {
+                System.out.println(tablas[i].descripcion());
+                System.out.println("Es esta la tabla que desea asignar? Si es asi ingrese 'si'");
+                continuarInscripciones = teclado.nextLine();
+                if (continuarInscripciones.equalsIgnoreCase("si")) {
+                    tabla = i;
+                    break;
+                }
+            }
+            if (!continuarInscripciones.equalsIgnoreCase("si")){
+                System.out.println("No se ha asignado ninguna tabla, se volvera al inicio de la inscripcion.");
+                continuar = "si";
+                continue;
+            }
+            System.out.println("Ingrese el estado de la asistencia('presente' si asistio, 'ausente' si no asistio o 'indefinido' si el turno todavia no ocurrio): ");
+            String asistencia = teclado.nextLine();
+            inscripciones[cantidadInscripciones] = new Inscripcion(fecha, alumnos[alumno], turnos[turno], tablas[tabla], asistencia);
+            turnos[turno].agregarInscripto(inscripciones[cantidadInscripciones]);
+            System.out.println("Si desea agregar otra inscripcion ingrese 'si'");
+            continuar = teclado.nextLine();
+        }while(continuar.equalsIgnoreCase("si"));
+
         System.out.println();
         System.out.println("Datos de la escuela");
         System.out.println(escuela.descripcion());
@@ -153,6 +198,11 @@ public class MainSurf {
         System.out.println("Datos de los alumnos");
         for (int i = 0; i < Alumno.getCantidadAlumnos(); i++){
             System.out.println(alumnos[i].descripcion());
+        }
+        System.out.println();
+        System.out.println("Datos de las inscripciones");
+        for (int i = 0; i < Inscripcion.getCantidadInscripciones(); i++){
+            System.out.println(inscripciones[i].descripcion());
         }
 
         teclado.close();
