@@ -45,7 +45,11 @@ Preguntas
 
    El atributo static pertenece a la clase y no a cada objeto, por eso Alumno puede llevar la cuenta global y asignar el número solo, sin que nadie se lo tenga que pasar. Si ese contador lo llevara main, la clase             perderia control de sus propios identificadores y dependeria de que el codigo externo se lo pasara bien por el constructor. Eso rompe el encapsulamiento, la  responsabilidad de generar numero unico deberia ser de Alumno no de quien lo usa.
 
-4.
+4. Pregunta: Tuvieron al menos un conflicto de merge. Cuenten cuál fue, qué archivo era y cómo lo resolvieron.
+
+   Respuesta:
+
+   No tuvimos ningún conflicto al mergear.
 
 
 
